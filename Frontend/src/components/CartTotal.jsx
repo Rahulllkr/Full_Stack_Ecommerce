@@ -5,7 +5,7 @@ const CartTotal = () => {
 
     const {currency,delevery_fee,getCartAmount} = useContext(ShopContext)
   return (
-    <div>CartTotal</div>
+    <div>CartTotalhere is tha total price</div>
   )
 }
 
