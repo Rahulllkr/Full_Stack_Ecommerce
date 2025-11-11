@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
 
@@ -16,7 +16,9 @@ const ShopContextProvider = (props) => {
 
         if(!size){
             toast.error("Please select product size")
+            return;
         }
+
         let cartData = structuredClone(cartItems)
         if(cartData[itemId]){
             if(cartData[itemId][size]){
@@ -42,17 +44,45 @@ const ShopContextProvider = (props) => {
                     }
                 }
                 catch(error){
-
+                    console.log(error.message)
                 }
             }
         }
         return totalCount;
     }
+
+    const updateQuantity = async(itemId,size,quantity) => {
+        let cartData = structuredClone(cartItems)
+
+        cartData[itemId][size] = quantity;
+
+        setCartItems(cartData)
+    }
+
+    const getCartAmount = async() => {
+        let totalAmount = 0;
+        for(const items in cartItems){
+            let itemInfo = products.find((product) => product._id === items)
+            for(const item in cartItems[items]){
+                try{
+                    if(cartItems[items][item] > 0){
+                        totalAmount += itemInfo.price * cartItems[items][item]
+                    }
+                }
+                catch(err){
+                    console.log(err.message)
+                }
+            }
+        }
+        return totalAmount;
+    }
     const value = {
         products,currency,delivery_fee,
         search,setSearch,showSearch,setShowSearch,
-        cartItems,addToCart,getCartCount
+        cartItems,addToCart,getCartCount,updateQuantity,
+        getCartAmount
     }
+
 
     return (
         <ShopContext.Provider value={value}>
