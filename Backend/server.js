@@ -18,6 +18,10 @@ app.get("/", (req,res) => {
     res.send("Server setup successfully")
 });
 
+app.get("/ser",(req,res) => {
+    res.send("Hello ser")
+})
+
 app.listen(port,()=>{
     console.log("Server is running on Port : "+ port)
 })
