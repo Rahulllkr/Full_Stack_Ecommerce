@@ -27,6 +27,10 @@ app.get("/", (req,res) => {
     res.send("Server setup successfully")
 });
 
+app.get("/check",(req,res) => {
+    res.send("api working")
+})
+
 
 app.listen(port,()=>{
     console.log("Server is running on Port : "+ port)
