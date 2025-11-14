@@ -27,9 +27,7 @@ app.get("/", (req,res) => {
     res.send("Server setup successfully")
 });
 
-app.get("/check",(req,res) => {
-    res.send("api working")
-})
+//app ko listen karna jaruri hai vo har req par res deta hai
 
 
 app.listen(port,()=>{
