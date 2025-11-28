@@ -22,9 +22,14 @@ const connectDB = async () => {
             maxPoolSize:5,
             serverSelectionTimeoutMS:5000,
             socketTimeoutMS:45000,
+            dbName: "e_commerce"
         }).then((mongoose) => {
             console.log("Database Connected")
             return mongoose
+        })
+        .catch((err) => {
+            console.log("DB Connection Error:", err)
+            throw new Error(err)
         })
     }
 
