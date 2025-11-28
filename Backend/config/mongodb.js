@@ -23,8 +23,8 @@ const connectDB = async () => {
             serverSelectionTimeoutMS:5000,
             socketTimeoutMS:45000,
         }).then((mongoose) => {
-            mongoose
             console.log("Database Connected")
+            return mongoose
         })
     }
 
